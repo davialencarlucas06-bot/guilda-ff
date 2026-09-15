@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNX Esportes | Recrutamento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">VNX <span>ESPORTES</span></div>
+    <p>Mais que uma guilda, uma família.</p>
+</header>
+
+<main>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>RECRUTAMENTO <span>ON</span></h1>
+            <p>Quer fazer parte da VNX Esportes?</p>
+            <p class="sub">Agende seu recrutamento para entrar na guilda.</p>
+
+            <a href="#agendamento" class="btn">
+                AGENDAR RECRUTAMENTO
+            </a>
+        </div>
+    </section>
+
+    <section class="requisitos">
+        <h2>REQUISITOS</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">15+</div>
+                <h3>MÍNIMO 15 ANOS</h3>
+                <p>Idade mínima para participar.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🎮</div>
+                <h3>JOGAR SEMPRE</h3>
+                <p>Compromisso com a guilda após o recrutamento.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">◉</div>
+                <h3>ONLINE TODOS OS DIAS</h3>
+                <p>Tenha presença e participe das atividades.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="vagas">
+        <h2>VAGAS ABERTAS</h2>
+
+        <div class="funcoes">
+            <div>💣<span>GANADEIRO</span></div>
+            <div>🛡️<span>SUPORTE</span></div>
+            <div>🏃<span>RUSHADOR</span></div>
+        </div>
+    </section>
+
+    <section id="agendamento" class="agendamento">
+
+        <h2>AGENDE SEU RECRUTAMENTO</h2>
+        <p class="descricao">
+            Escolha o dia que deseja realizar seu recrutamento.
+        </p>
+
+        <form id="formAgendamento">
+
+            <label for="nome">Seu nome</label>
+            <input
+                type="text"
+                id="nome"
+                placeholder="Digite seu nome"
+                required
+            >
+
+            <label for="nick">Nick no Free Fire</label>
+            <input
+                type="text"
+                id="nick"
+                placeholder="Digite seu nick"
+                required
+            >
+
+            <label for="idade">Idade</label>
+            <input
+                type="number"
+                id="idade"
+                min="15"
+                placeholder="15 ou mais"
+                required
+            >
+
+            <label for="funcao">Função desejada</label>
+            <select id="funcao" required>
+                <option value="">Selecione uma função</option>
+                <option value="Granadeiro">Granadeiro</option>
+                <option value="Suporte">Suporte</option>
+                <option value="Rushador">Rushador</option>
+            </select>
+
+            <label for="data">Dia do recrutamento</label>
+            <input
+                type="date"
+                id="data"
+                required
+            >
+
+            <label>Horário</label>
+
+            <div class="horario">
+                <span>19:00</span>
+                <small>Todos os dias</small>
+            </div>
+
+            <button type="submit">
+                CONFIRMAR AGENDAMENTO
+            </button>
+
+        </form>
+
+        <div id="mensagem"></div>
+
+    </section>
+
+</main>
+
+<footer>
+    <h3>VNX ESPORTES</h3>
+    <p>RECRUTAMENTO ON</p>
+    <strong>VAGAS ABERTAS</strong>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
