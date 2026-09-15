@@ -1,956 +1,387 @@
-// ==================================================
-// VNX ESPORTES
-// SISTEMA DE RECRUTAMENTO
-// ==================================================
+/* =========================================
+   VNX ESPORTES
+   SISTEMA DE RECRUTAMENTO
+========================================= */
 
 
-// ==================================================
-// CONFIGURAÇÕES
-// ==================================================
+/* =========================================
+   LINK DO GRUPO
+========================================= */
 
-const ADMIN_EMAIL = "SEU_EMAIL_AQUI";
-
-
-// ==================================================
-// BANCO LOCAL
-// ==================================================
-
-// Esta versão funciona diretamente no GitHub Pages.
-// Os agendamentos ficam salvos neste navegador.
-
-let candidatos =
-    JSON.parse(
-        localStorage.getItem("vnx_candidatos")
-    ) || [];
-
-let candidatoAtual =
-    JSON.parse(
-        localStorage.getItem("vnx_candidato_atual")
-    ) || null;
-
-let candidatoSelecionado = null;
+const WHATSAPP_GROUP =
+  "https://chat.whatsapp.com/KqXvIWJYEN1LA9CCGao8bN?s=cl&p=i&mlu=4";
 
 
-// ==================================================
-// TROCAR TELAS
-// ==================================================
+/* =========================================
+   NAVEGAÇÃO ENTRE TELAS
+========================================= */
 
-function abrirTela(id) {
+function showScreen(screenId) {
 
-    document
-        .querySelectorAll(".tela")
-        .forEach(tela => {
+  const screens =
+    document.querySelectorAll(".screen");
 
-            tela.classList.remove("ativa");
+  screens.forEach(screen => {
 
-        });
+    screen.classList.add("hidden");
 
-    document
-        .getElementById(id)
-        .classList.add("ativa");
+  });
+
+
+  const selectedScreen =
+    document.getElementById(screenId);
+
+
+  if (selectedScreen) {
+
+    selectedScreen.classList.remove("hidden");
 
     window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+      top: 0,
+      behavior: "smooth"
     });
+
+  }
+
 }
 
 
-// ==================================================
-// GERAR DATAS
-// SOMENTE SEGUNDA, QUARTA E SEXTA
-// ==================================================
+/* =========================================
+   VERIFICAR DIA
+========================================= */
 
-function gerarDias() {
+function isValidDay(day) {
 
-    const select =
-        document.getElementById("dia");
+  const validDays = [
+    "Segunda-feira",
+    "Quarta-feira",
+    "Sexta-feira"
+  ];
 
-    select.innerHTML =
-        `<option value="">
-            Escolha o dia
-        </option>`;
+  return validDays.includes(day);
 
-    const hoje = new Date();
-
-    for (let i = 0; i < 60; i++) {
-
-        const data = new Date();
-
-        data.setDate(
-            hoje.getDate() + i
-        );
-
-        const diaSemana =
-            data.getDay();
-
-        // 1 = segunda
-        // 3 = quarta
-        // 5 = sexta
-
-        if (
-            diaSemana === 1 ||
-            diaSemana === 3 ||
-            diaSemana === 5
-        ) {
-
-            const ano =
-                data.getFullYear();
-
-            const mes =
-                String(
-                    data.getMonth() + 1
-                ).padStart(2, "0");
-
-            const dia =
-                String(
-                    data.getDate()
-                ).padStart(2, "0");
-
-            const valor =
-                `${ano}-${mes}-${dia}`;
-
-            const nomeDia =
-                data.toLocaleDateString(
-                    "pt-BR",
-                    {
-                        weekday: "long",
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric"
-                    }
-                );
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-            option.value = valor;
-
-            option.textContent =
-                `${nomeDia} — 19:00`;
-
-            select.appendChild(option);
-        }
-    }
 }
 
 
-// ==================================================
-// FORMATAR DATA
-// ==================================================
+/* =========================================
+   ENVIAR INSCRIÇÃO
+========================================= */
 
-function formatarData(data) {
+function submitRegistration() {
 
-    if (!data) return "";
-
-    return new Date(
-        data + "T00:00:00"
-    ).toLocaleDateString(
-        "pt-BR",
-        {
-            weekday: "long",
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
-        }
-    );
-}
-
-
-// ==================================================
-// AGENDAMENTO
-// ==================================================
-
-document
-    .getElementById("formulario")
-    .addEventListener(
-        "submit",
-        function(event) {
-
-            event.preventDefault();
-
-            const nome =
-                document
-                    .getElementById("nome")
-                    .value
-                    .trim();
-
-            const idFreeFire =
-                document
-                    .getElementById("idFreeFire")
-                    .value
-                    .trim();
-
-            const idade =
-                Number(
-                    document
-                        .getElementById("idade")
-                        .value
-                );
-
-            const funcao =
-                document
-                    .getElementById(
-                        "funcaoEscolhida"
-                    )
-                    .value;
-
-            const dia =
-                document
-                    .getElementById("dia")
-                    .value;
-
-
-            // Verificação da idade
-
-            if (idade < 15) {
-
-                alert(
-                    "O recrutamento é somente para pessoas com 15 anos ou mais."
-                );
-
-                return;
-            }
-
-
-            // Criar candidato
-
-            const candidato = {
-
-                id:
-                    Date.now(),
-
-                nome:
-                    nome,
-
-                idFreeFire:
-                    idFreeFire,
-
-                idade:
-                    idade,
-
-                funcao:
-                    funcao,
-
-                dia:
-                    dia,
-
-                horario:
-                    "19:00",
-
-                status:
-                    "Aguardando recrutamento",
-
-                mensagens: [
-
-                    {
-                        tipo: "bot",
-
-                        texto:
-                            "Olá! 👋 Seja muito bem-vindo à VNX Esportes!"
-                    },
-
-                    {
-                        tipo: "bot",
-
-                        texto:
-                            "Seu recrutamento foi agendado para " +
-                            formatarData(dia) +
-                            " às 19:00. ⏰"
-                    },
-
-                    {
-                        tipo: "bot",
-
-                        texto:
-                            "Fique preparado e esteja online alguns minutos antes do horário do recrutamento. 🎮"
-                    }
-
-                ]
-
-            };
-
-
-            candidatos.push(
-                candidato
-            );
-
-
-            localStorage.setItem(
-                "vnx_candidatos",
-                JSON.stringify(candidatos)
-            );
-
-
-            candidatoAtual =
-                candidato;
-
-            localStorage.setItem(
-                "vnx_candidato_atual",
-                JSON.stringify(candidato)
-            );
-
-
-            mostrarAreaCandidato();
-
-        }
-    );
-
-
-// ==================================================
-// ÁREA DO CANDIDATO
-// ==================================================
-
-function mostrarAreaCandidato() {
-
-    abrirTela(
-        "areaCandidato"
-    );
-
+  const playerId =
     document
-        .getElementById(
-            "informacoesAgendamento"
-        )
-        .innerHTML =
-
-        `${candidatoAtual.nome}
-        • ID ${candidatoAtual.idFreeFire}
-        • ${candidatoAtual.funcao}
-        <br>
-        📅 ${formatarData(candidatoAtual.dia)}
-        • ⏰ 19:00`;
-
-    mostrarMensagens();
-
-}
-
-
-// ==================================================
-// MOSTRAR MENSAGENS
-// ==================================================
-
-function mostrarMensagens() {
-
-    const caixa =
-        document.getElementById(
-            "mensagens"
-        );
-
-    caixa.innerHTML = "";
-
-
-    candidatoAtual.mensagens
-        .forEach(
-            mensagem => {
-
-                const div =
-                    document.createElement(
-                        "div"
-                    );
-
-                div.classList.add(
-                    "mensagem"
-                );
-
-
-                if (
-                    mensagem.tipo ===
-                    "bot"
-                ) {
-
-                    div.classList.add(
-                        "bot-msg"
-                    );
-
-                    div.innerHTML =
-                        `${mensagem.texto}
-                        <small>BOT VNX</small>`;
-
-                }
-
-                else if (
-                    mensagem.tipo ===
-                    "adm"
-                ) {
-
-                    div.classList.add(
-                        "adm-msg"
-                    );
-
-                    div.innerHTML =
-                        `${mensagem.texto}
-                        <small>ADM</small>`;
-
-                }
-
-                else {
-
-                    div.classList.add(
-                        "usuario-msg"
-                    );
-
-                    div.innerHTML =
-                        `${mensagem.texto}
-                        <small>VOCÊ</small>`;
-
-                }
-
-
-                caixa.appendChild(
-                    div
-                );
-
-            }
-        );
-
-
-    caixa.scrollTop =
-        caixa.scrollHeight;
-}
-
-
-// ==================================================
-// CHAT DO CANDIDATO
-// ==================================================
-
-document
-    .getElementById("formChat")
-    .addEventListener(
-        "submit",
-        function(event) {
-
-            event.preventDefault();
-
-
-            const input =
-                document.getElementById(
-                    "mensagem"
-                );
-
-            const texto =
-                input.value.trim();
-
-
-            if (!texto)
-                return;
-
-
-            candidatoAtual.mensagens.push({
-
-                tipo:
-                    "usuario",
-
-                texto:
-                    texto
-
-            });
-
-
-            const mensagemMinuscula =
-                texto.toLowerCase();
-
-
-            // BOT
-
-            let resposta =
-                "Mensagem recebida! 🤖 " +
-                "Vou deixar tudo registrado para o administrador. " +
-                "Fique preparado para seu recrutamento às 19:00.";
-
-
-            if (
-                mensagemMinuscula.includes(
-                    "oi"
-                ) ||
-                mensagemMinuscula.includes(
-                    "olá"
-                ) ||
-                mensagemMinuscula.includes(
-                    "bom dia"
-                ) ||
-                mensagemMinuscula.includes(
-                    "boa tarde"
-                )
-            ) {
-
-                resposta =
-                    "Olá! 👋 Seja bem-vindo à VNX Esportes! " +
-                    "Estou aqui para ajudar. " +
-                    "Caso precise falar com o ADM, sua mensagem será encaminhada.";
-
-            }
-
-
-            if (
-                mensagemMinuscula.includes(
-                    "horário"
-                ) ||
-                mensagemMinuscula.includes(
-                    "hora"
-                ) ||
-                mensagemMinuscula.includes(
-                    "19"
-                )
-            ) {
-
-                resposta =
-                    "Seu recrutamento está marcado para 19:00. ⏰ " +
-                    "Fique online alguns minutos antes e preparado para participar.";
-
-            }
-
-
-            candidatoAtual.mensagens.push({
-
-                tipo:
-                    "bot",
-
-                texto:
-                    resposta
-
-            });
-
-
-            salvarAtual();
-
-            mostrarMensagens();
-
-            input.value = "";
-
-        }
+      .getElementById("playerId")
+      .value
+      .trim();
+
+
+  const age =
+    Number(
+      document
+        .getElementById("playerAge")
+        .value
     );
 
 
-// ==================================================
-// SALVAR CANDIDATO ATUAL
-// ==================================================
-
-function salvarAtual() {
-
-    const indice =
-        candidatos.findIndex(
-            c =>
-                c.id ===
-                candidatoAtual.id
-        );
-
-
-    if (indice !== -1) {
-
-        candidatos[indice] =
-            candidatoAtual;
-
-    }
-
-
-    localStorage.setItem(
-        "vnx_candidatos",
-        JSON.stringify(candidatos)
-    );
-
-    localStorage.setItem(
-        "vnx_candidato_atual",
-        JSON.stringify(candidatoAtual)
-    );
-
-}
-
-
-// ==================================================
-// PAINEL DO ADM
-// ==================================================
-
-function abrirPainelAdm() {
-
-    abrirTela(
-        "painelAdm"
-    );
-
-    carregarCandidatos();
-
-}
-
-
-// ==================================================
-// LISTA DE CANDIDATOS
-// ==================================================
-
-function carregarCandidatos() {
-
-    const lista =
-        document.getElementById(
-            "listaCandidatos"
-        );
-
-    lista.innerHTML = "";
-
-
-    if (candidatos.length === 0) {
-
-        lista.innerHTML =
-            "<p style='color:#999;text-align:center'>" +
-            "Nenhum recrutamento ainda." +
-            "</p>";
-
-        return;
-    }
-
-
-    candidatos.forEach(
-        candidato => {
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-            div.classList.add(
-                "candidato"
-            );
-
-
-            div.innerHTML =
-
-                `<b>
-                    ${candidato.nome}
-                </b>
-
-                <small>
-                    🆔 ID:
-                    ${candidato.idFreeFire}
-                    <br>
-
-                    🎯
-                    ${candidato.funcao}
-                    <br>
-
-                    📅
-                    ${formatarData(
-                        candidato.dia
-                    )}
-                    às 19:00
-                </small>`;
-
-
-            div.onclick =
-                function() {
-
-                    selecionarCandidato(
-                        candidato.id
-                    );
-
-                };
-
-
-            lista.appendChild(
-                div
-            );
-
-        }
-    );
-
-}
-
-
-// ==================================================
-// SELECIONAR CANDIDATO
-// ==================================================
-
-function selecionarCandidato(
-    id
-) {
-
-    candidatoSelecionado =
-        candidatos.find(
-            candidato =>
-                candidato.id === id
-        );
-
-
-    if (!candidatoSelecionado)
-        return;
-
-
+  const role =
     document
-        .getElementById(
-            "nomeChatAdm"
-        )
-        .textContent =
-
-        `${candidatoSelecionado.nome}
-        • ID ${candidatoSelecionado.idFreeFire}`;
+      .getElementById("playerRole")
+      .value;
 
 
-    const mensagens =
-        document.getElementById(
-            "mensagensAdm"
-        );
-
-    mensagens.innerHTML = "";
-
-
-    candidatoSelecionado
-        .mensagens
-        .forEach(
-            mensagem => {
-
-                const div =
-                    document.createElement(
-                        "div"
-                    );
-
-                div.classList.add(
-                    "mensagem"
-                );
-
-
-                if (
-                    mensagem.tipo ===
-                    "bot"
-                ) {
-
-                    div.classList.add(
-                        "bot-msg"
-                    );
-
-                    div.innerHTML =
-                        `${mensagem.texto}
-                        <small>BOT VNX</small>`;
-
-                }
-
-                else if (
-                    mensagem.tipo ===
-                    "adm"
-                ) {
-
-                    div.classList.add(
-                        "adm-msg"
-                    );
-
-                    div.innerHTML =
-                        `${mensagem.texto}
-                        <small>ADM</small>`;
-
-                }
-
-                else {
-
-                    div.classList.add(
-                        "usuario-msg"
-                    );
-
-                    div.innerHTML =
-                        `${mensagem.texto}
-                        <small>CANDIDATO</small>`;
-
-                }
-
-
-                mensagens.appendChild(
-                    div
-                );
-
-            }
-        );
-
-
-    mensagens.scrollTop =
-        mensagens.scrollHeight;
-
-
+  const day =
     document
-        .getElementById(
-            "formChatAdm"
-        )
-        .classList.remove(
-            "escondido"
-        );
+      .getElementById("recruitmentDay")
+      .value;
+
+
+  const error =
+    document.getElementById("formError");
+
+
+  error.textContent = "";
+
+
+  /* =========================
+     VALIDAÇÕES
+  ========================== */
+
+  if (!playerId) {
+
+    error.textContent =
+      "Digite seu ID do Free Fire.";
+
+    return;
+  }
+
+
+  if (!/^[0-9]+$/.test(playerId)) {
+
+    error.textContent =
+      "O ID deve conter apenas números.";
+
+    return;
+  }
+
+
+  if (!age) {
+
+    error.textContent =
+      "Digite sua idade.";
+
+    return;
+  }
+
+
+  if (age < 15) {
+
+    error.textContent =
+      "A idade mínima para participar é 15 anos.";
+
+    return;
+  }
+
+
+  if (!role) {
+
+    error.textContent =
+      "Escolha uma função.";
+
+    return;
+  }
+
+
+  if (!day) {
+
+    error.textContent =
+      "Escolha o dia do recrutamento.";
+
+    return;
+  }
+
+
+  if (!isValidDay(day)) {
+
+    error.textContent =
+      "Escolha um dia válido de recrutamento.";
+
+    return;
+  }
+
+
+  /* =========================
+     CRIAR DADOS
+  ========================== */
+
+  const registration = {
+
+    id: playerId,
+
+    age: age,
+
+    role: role,
+
+    day: day,
+
+    time: "19:00",
+
+    createdAt:
+      new Date().toISOString()
+
+  };
+
+
+  /* =========================
+     SALVAR NO NAVEGADOR
+  ========================== */
+
+  localStorage.setItem(
+    "vnxRegistration",
+    JSON.stringify(registration)
+  );
+
+
+  /* =========================
+     MOSTRAR CONFIRMAÇÃO
+  ========================== */
+
+  showConfirmation(registration);
 
 }
 
 
-// ==================================================
-// CHAT DO ADM
-// ==================================================
+/* =========================================
+   MOSTRAR CONFIRMAÇÃO
+========================================= */
 
-document
-    .getElementById(
-        "formChatAdm"
-    )
-    .addEventListener(
-        "submit",
-        function(event) {
+function showConfirmation(data) {
 
-            event.preventDefault();
-
-
-            if (
-                !candidatoSelecionado
-            )
-                return;
-
-
-            const input =
-                document.getElementById(
-                    "mensagemAdm"
-                );
-
-
-            const texto =
-                input.value.trim();
-
-
-            if (!texto)
-                return;
-
-
-            candidatoSelecionado
-                .mensagens
-                .push({
-
-                    tipo:
-                        "adm",
-
-                    texto:
-                        texto
-
-                });
-
-
-            salvarCandidatoSelecionado();
-
-            selecionarCandidato(
-                candidatoSelecionado.id
-            );
-
-
-            input.value = "";
-
-        }
+  const summary =
+    document.getElementById(
+      "registrationSummary"
     );
 
 
-// ==================================================
-// SALVAR CANDIDATO ADM
-// ==================================================
+  summary.innerHTML = `
 
-function salvarCandidatoSelecionado() {
+    <div class="summary-row">
 
-    const indice =
-        candidatos.findIndex(
-            c =>
-                c.id ===
-                candidatoSelecionado.id
-        );
+      <span>ID</span>
+
+      <strong>
+        ${escapeHtml(data.id)}
+      </strong>
+
+    </div>
 
 
-    if (indice !== -1) {
+    <div class="summary-row">
 
-        candidatos[indice] =
-            candidatoSelecionado;
+      <span>Idade</span>
+
+      <strong>
+        ${escapeHtml(data.age)}
+      </strong>
+
+    </div>
+
+
+    <div class="summary-row">
+
+      <span>Função</span>
+
+      <strong>
+        ${escapeHtml(data.role)}
+      </strong>
+
+    </div>
+
+
+    <div class="summary-row">
+
+      <span>Dia</span>
+
+      <strong>
+        ${escapeHtml(data.day)}
+      </strong>
+
+    </div>
+
+
+    <div class="summary-row">
+
+      <span>Horário</span>
+
+      <strong>
+        19:00
+      </strong>
+
+    </div>
+
+  `;
+
+
+  const whatsappButton =
+    document.querySelector(
+      ".whatsapp-button"
+    );
+
+
+  whatsappButton.href =
+    WHATSAPP_GROUP;
+
+
+  showScreen(
+    "confirmationScreen"
+  );
+
+}
+
+
+/* =========================================
+   SEGURANÇA BÁSICA PARA TEXTO
+========================================= */
+
+function escapeHtml(value) {
+
+  return String(value)
+
+    .replace(/&/g, "&amp;")
+
+    .replace(/</g, "&lt;")
+
+    .replace(/>/g, "&gt;")
+
+    .replace(/"/g, "&quot;")
+
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================
+   CARREGAR INSCRIÇÃO SALVA
+========================================= */
+
+function loadPreviousRegistration() {
+
+  const saved =
+    localStorage.getItem(
+      "vnxRegistration"
+    );
+
+
+  if (!saved) {
+
+    return;
+
+  }
+
+
+  try {
+
+    const registration =
+      JSON.parse(saved);
+
+
+    if (
+      registration &&
+      registration.id &&
+      registration.role &&
+      registration.day
+    ) {
+
+      console.log(
+        "Inscrição VNX encontrada:",
+        registration
+      );
 
     }
 
+  } catch (error) {
 
-    localStorage.setItem(
-        "vnx_candidatos",
-        JSON.stringify(candidatos)
+    console.error(
+      "Erro ao carregar inscrição.",
+      error
     );
+
+  }
 
 }
 
 
-// ==================================================
-// SAIR
-// ==================================================
+/* =========================================
+   INICIALIZAÇÃO
+========================================= */
 
-function sairDaArea() {
+document.addEventListener(
+  "DOMContentLoaded",
+  function() {
 
-    candidatoAtual = null;
+    loadPreviousRegistration();
 
-    candidatoSelecionado = null;
+    showScreen("homeScreen");
 
-    localStorage.removeItem(
-        "vnx_candidato_atual"
-    );
-
-    abrirTela(
-        "inicio"
-    );
-
-}
-
-
-// ==================================================
-// TECLA SECRETA DO ADM
-// ==================================================
-//
-// Para abrir o painel:
-// clique no logo VNX 5 vezes.
-// Depois será solicitado seu e-mail.
-//
-
-let cliquesLogo = 0;
-
-document
-    .querySelector(".logo")
-    .addEventListener(
-        "click",
-        function() {
-
-            cliquesLogo++;
-
-            if (
-                cliquesLogo >= 5
-            ) {
-
-                const email =
-                    prompt(
-                        "Digite o e-mail do ADM:"
-                    );
-
-
-                if (
-                    email &&
-                    email.toLowerCase() ===
-                    ADMIN_EMAIL.toLowerCase()
-                ) {
-
-                    abrirPainelAdm();
-
-                }
-
-                else {
-
-                    alert(
-                        "Acesso negado."
-                    );
-
-                }
-
-
-                cliquesLogo = 0;
-
-            }
-
-        }
-    );
-
-
-// ==================================================
-// INICIALIZAÇÃO
-// ==================================================
-
-gerarDias();
-
-
-// Recuperar candidato se a página for atualizada
-
-if (candidatoAtual) {
-
-    mostrarAreaCandidato();
-
-}
+  }
+);
