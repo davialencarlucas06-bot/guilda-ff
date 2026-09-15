@@ -4,304 +4,542 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+:root {
+    --roxo: #9d00ff;
+    --roxo-escuro: #6100a8;
+    --fundo: #050008;
+    --card: #100817;
+    --texto: #ffffff;
+    --cinza: #aaaaaa;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #050008;
-    color: white;
+    background: var(--fundo);
+    color: var(--texto);
 }
 
-header {
-    text-align: center;
-    padding: 25px 15px;
-    background: #08000d;
-    border-bottom: 1px solid #8a00ff;
+button,
+input,
+select {
+    font-family: inherit;
 }
 
-.logo {
-    font-size: 35px;
-    font-weight: 900;
-    color: white;
-    letter-spacing: 3px;
+
+/* ================= TELAS ================= */
+
+.tela {
+    display: none;
+    min-height: 100vh;
 }
 
-.logo span {
-    color: #9b00ff;
+.tela.ativa {
+    display: block;
 }
 
-header p {
-    margin-top: 7px;
-    color: #b98cff;
-}
 
-.hero {
-    min-height: 520px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 30px 20px;
+/* ================= INÍCIO ================= */
 
+#inicio {
     background:
         linear-gradient(
-            rgba(5,0,8,.78),
-            rgba(5,0,8,.95)
+            rgba(5, 0, 8, .55),
+            rgba(5, 0, 8, .96)
         ),
         url("recrutamento.png");
 
     background-size: cover;
     background-position: center;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.hero-content {
-    max-width: 700px;
+#inicio.ativa {
+    display: flex;
 }
 
-.hero h1 {
-    font-size: clamp(42px, 8vw, 80px);
+.inicio-conteudo {
+    padding: 30px;
+    max-width: 800px;
+}
+
+.logo {
+    font-size: 45px;
     font-weight: 900;
-    text-shadow: 0 0 25px #8a00ff;
+    letter-spacing: 4px;
 }
 
-.hero h1 span {
-    color: #a900ff;
+.logo span {
+    color: var(--roxo);
 }
 
-.hero p {
-    font-size: 22px;
-    margin-top: 15px;
+.subtitulo {
+    color: #c995ff;
+    letter-spacing: 4px;
+    font-size: 12px;
+    margin-top: 12px;
 }
 
-.hero .sub {
-    font-size: 16px;
-    color: #bbb;
+h1 {
+    margin-top: 45px;
+    font-size: clamp(45px, 9vw, 85px);
+    text-shadow: 0 0 30px var(--roxo);
 }
 
-.btn {
-    display: inline-block;
-    margin-top: 35px;
-    padding: 17px 30px;
-    background: linear-gradient(90deg, #7000ff, #b000ff);
+h1 span {
+    color: var(--roxo);
+}
+
+.descricao {
+    color: #cccccc;
+    font-size: 20px;
+    margin: 25px 0;
+}
+
+
+/* ================= BOTÕES ================= */
+
+.botao {
+    border: none;
+    padding: 17px 28px;
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--roxo-escuro),
+            var(--roxo)
+        );
+
     color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    box-shadow: 0 0 25px #7000ff;
-    transition: .3s;
+    font-weight: 900;
+    cursor: pointer;
+
+    box-shadow:
+        0 0 25px #8100ff66;
+
+    transition: .2s;
 }
 
-.btn:hover {
-    transform: scale(1.05);
+.botao:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 35px #a000ff99;
 }
 
-section {
-    padding: 70px 20px;
-    max-width: 1100px;
+.largura {
+    width: 100%;
+    margin-top: 30px;
+}
+
+
+/* ================= PÁGINAS ================= */
+
+.pagina {
+    max-width: 1050px;
     margin: auto;
+    padding: 35px 20px 70px;
+}
+
+.formulario-pagina {
+    max-width: 650px;
+}
+
+.voltar {
+    border: none;
+    background: transparent;
+    color: #c68aff;
+    cursor: pointer;
+    margin-bottom: 30px;
+    font-size: 15px;
 }
 
 h2 {
     text-align: center;
+    color: #bf60ff;
+    text-shadow: 0 0 15px #7100c9;
+    margin: 20px 0 35px;
     font-size: 34px;
-    margin-bottom: 35px;
-    color: #b000ff;
-    text-shadow: 0 0 15px #7000ff;
 }
+
+
+/* ================= CARDS ================= */
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, 1fr);
+
     gap: 20px;
 }
 
 .card {
-    background: #0d0714;
-    border: 1px solid #7000ff;
+    background: var(--card);
+    border: 1px solid #7600c9;
     border-radius: 15px;
     padding: 30px 20px;
     text-align: center;
-    transition: .3s;
 }
 
 .card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 0 25px #5600a8;
+    box-shadow:
+        0 0 25px #7200aa55;
 }
 
-.icon {
+.icone {
+    color: var(--roxo);
     font-size: 42px;
-    color: #a900ff;
-    margin-bottom: 15px;
+    font-weight: bold;
 }
 
 .card h3 {
-    font-size: 18px;
+    margin: 15px 0 8px;
 }
 
 .card p {
-    color: #aaa;
-    margin-top: 10px;
+    color: var(--cinza);
     line-height: 1.5;
 }
 
-.vagas {
-    text-align: center;
+.titulo-vagas {
+    margin-top: 65px;
 }
+
+
+/* ================= FUNÇÕES ================= */
 
 .funcoes {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
-.funcoes div {
+.funcao {
     width: 180px;
-    padding: 25px 15px;
-    border: 1px solid #8a00ff;
-    background: #0d0714;
+    padding: 23px;
+    text-align: center;
+
+    background: var(--card);
+    border: 1px solid #8200dc;
     border-radius: 12px;
-    color: #a900ff;
-    font-size: 35px;
+
+    font-size: 32px;
 }
 
-.funcoes span {
+.funcao span {
     display: block;
-    margin-top: 12px;
-    color: white;
-    font-size: 15px;
+    margin-top: 10px;
+    font-size: 14px;
     font-weight: bold;
 }
 
-.agendamento {
-    max-width: 650px;
-}
 
-.descricao {
+/* ================= FORMULÁRIO ================= */
+
+.texto-central {
     text-align: center;
-    color: #aaa;
-    margin-top: -20px;
-    margin-bottom: 30px;
+    color: var(--cinza);
+    margin-bottom: 25px;
 }
 
 form {
-    background: #0c0711;
-    padding: 30px;
+    background: var(--card);
+    border: 1px solid #6500a8;
     border-radius: 15px;
-    border: 1px solid #7100c9;
-    box-shadow: 0 0 30px rgba(126,0,255,.15);
+    padding: 25px;
 }
 
 label {
     display: block;
-    margin: 18px 0 8px;
-    color: #c794ff;
+    margin: 17px 0 7px;
+    color: #d19cff;
     font-weight: bold;
 }
 
 input,
 select {
     width: 100%;
-    padding: 15px;
+    padding: 14px;
+
     background: #050008;
-    border: 1px solid #4d0080;
-    border-radius: 8px;
     color: white;
+
+    border: 1px solid #4d007a;
+    border-radius: 8px;
+
     outline: none;
-    font-size: 15px;
 }
 
 input:focus,
 select:focus {
-    border-color: #a900ff;
-    box-shadow: 0 0 10px #5800a0;
+    border-color: var(--roxo);
+    box-shadow: 0 0 10px #7800aa;
 }
 
 .horario {
-    width: 100%;
-    padding: 18px;
-    background: linear-gradient(90deg, #26003f, #12001e);
-    border: 1px solid #9b00ff;
-    border-radius: 8px;
+    margin-top: 20px;
+    padding: 17px;
+
     text-align: center;
+
+    background: #210033;
+    border: 1px solid var(--roxo);
+
+    border-radius: 9px;
 }
 
-.horario span {
+.horario strong {
     display: block;
+    color: #d79aff;
     font-size: 30px;
-    font-weight: bold;
-    color: #c06cff;
 }
 
 .horario small {
-    color: #aaa;
+    color: #999;
 }
 
-button {
-    width: 100%;
-    margin-top: 28px;
-    padding: 17px;
+
+/* ================= BARRA ================= */
+
+.barra {
+    height: 70px;
+    padding: 12px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #0b0410;
+    border-bottom: 1px solid #6500a8;
+}
+
+.barra strong {
+    display: block;
+}
+
+.barra small {
+    display: block;
+    color: #999;
+    margin-top: 4px;
+}
+
+.barra button {
+    background: #1c0b25;
+    color: white;
+    border: 1px solid #6900a9;
+    border-radius: 7px;
+    padding: 8px 14px;
+}
+
+
+/* ================= ÁREA ================= */
+
+.area {
+    max-width: 950px;
+    margin: auto;
+    padding: 25px 18px;
+}
+
+.status {
+    background: var(--card);
+    border: 1px solid #6900a9;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+.status p {
+    color: #aaa;
+    margin-top: 8px;
+}
+
+.bolinha {
+    display: inline-block;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: var(--roxo);
+
+    box-shadow:
+        0 0 10px var(--roxo);
+}
+
+
+/* ================= CHAT ================= */
+
+.chat {
+    background: var(--card);
+    border: 1px solid #62009d;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.chat-topo {
+    padding: 16px;
+    background: #15091c;
+    border-bottom: 1px solid #4d0079;
+}
+
+.chat-topo span {
+    float: right;
+    color: var(--roxo);
+    font-size: 12px;
+}
+
+.mensagens {
+    height: 430px;
+    overflow-y: auto;
+    padding: 18px;
+}
+
+.mensagem {
+    max-width: 78%;
+    padding: 11px 13px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.bot-msg {
+    background: #251030;
+    border: 1px solid #57007f;
+}
+
+.usuario-msg {
+    background: #6d00d9;
+    margin-left: auto;
+}
+
+.adm-msg {
+    background: #3b1150;
+}
+
+.mensagem small {
+    display: block;
+    color: #aaa;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.chat-form {
+    display: flex;
+    gap: 8px;
+
+    padding: 10px;
+
+    border: none;
+    border-top: 1px solid #4d0079;
+
+    border-radius: 0;
+}
+
+.chat-form input {
+    flex: 1;
+}
+
+.chat-form button {
+    width: 50px;
     border: none;
     border-radius: 8px;
-    background: linear-gradient(90deg, #7000ff, #b000ff);
+
+    background: var(--roxo);
     color: white;
-    font-weight: bold;
-    font-size: 16px;
+
     cursor: pointer;
-    box-shadow: 0 0 20px rgba(145,0,255,.5);
-    transition: .3s;
 }
 
-button:hover {
-    transform: scale(1.02);
+
+/* ================= ADM ================= */
+
+.painel {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px 18px;
+
+    display: grid;
+    grid-template-columns: 350px 1fr;
+
+    gap: 18px;
 }
 
-#mensagem {
-    margin-top: 20px;
-    text-align: center;
-    color: #c78aff;
-    font-weight: bold;
+.lista {
+    background: var(--card);
+    border: 1px solid #62009d;
+    border-radius: 14px;
+    padding: 15px;
 }
 
-footer {
-    text-align: center;
-    padding: 45px 20px;
-    background: #08000d;
-    border-top: 1px solid #7100c9;
+.lista h2 {
+    font-size: 24px;
 }
 
-footer h3 {
-    font-size: 28px;
+.candidato {
+    padding: 14px;
+    margin-bottom: 9px;
+
+    border: 1px solid #3d1752;
+    border-radius: 10px;
+
+    cursor: pointer;
 }
 
-footer p {
-    color: #a900ff;
-    margin: 10px;
-    font-weight: bold;
+.candidato:hover {
+    border-color: var(--roxo);
 }
 
-footer strong {
-    color: white;
+.candidato small {
+    color: #999;
+    line-height: 1.6;
 }
 
-@media (max-width: 700px) {
+.candidato.selecionado {
+    background: #24102f;
+    border-color: var(--roxo);
+}
+
+.escondido {
+    display: none;
+}
+
+
+/* ================= CELULAR ================= */
+
+@media (max-width: 750px) {
 
     .cards {
         grid-template-columns: 1fr;
     }
 
-    .hero {
-        min-height: 450px;
+    .painel {
+        grid-template-columns: 1fr;
     }
 
-    form {
-        padding: 22px;
+    .lista {
+        max-height: 300px;
+        overflow-y: auto;
     }
 
-    .funcoes div {
+    .mensagens {
+        height: 360px;
+    }
+
+    .logo {
+        font-size: 34px;
+    }
+
+    .subtitulo {
+        letter-spacing: 2px;
+    }
+
+    .funcao {
         width: 140px;
     }
+
 }
