@@ -1,0 +1,307 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050008;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 25px 15px;
+    background: #08000d;
+    border-bottom: 1px solid #8a00ff;
+}
+
+.logo {
+    font-size: 35px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: #9b00ff;
+}
+
+header p {
+    margin-top: 7px;
+    color: #b98cff;
+}
+
+.hero {
+    min-height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+
+    background:
+        linear-gradient(
+            rgba(5,0,8,.78),
+            rgba(5,0,8,.95)
+        ),
+        url("recrutamento.png");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 8vw, 80px);
+    font-weight: 900;
+    text-shadow: 0 0 25px #8a00ff;
+}
+
+.hero h1 span {
+    color: #a900ff;
+}
+
+.hero p {
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+.hero .sub {
+    font-size: 16px;
+    color: #bbb;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 17px 30px;
+    background: linear-gradient(90deg, #7000ff, #b000ff);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 0 25px #7000ff;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+section {
+    padding: 70px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 35px;
+    color: #b000ff;
+    text-shadow: 0 0 15px #7000ff;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: #0d0714;
+    border: 1px solid #7000ff;
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 0 25px #5600a8;
+}
+
+.icon {
+    font-size: 42px;
+    color: #a900ff;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    font-size: 18px;
+}
+
+.card p {
+    color: #aaa;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.vagas {
+    text-align: center;
+}
+
+.funcoes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.funcoes div {
+    width: 180px;
+    padding: 25px 15px;
+    border: 1px solid #8a00ff;
+    background: #0d0714;
+    border-radius: 12px;
+    color: #a900ff;
+    font-size: 35px;
+}
+
+.funcoes span {
+    display: block;
+    margin-top: 12px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.agendamento {
+    max-width: 650px;
+}
+
+.descricao {
+    text-align: center;
+    color: #aaa;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+
+form {
+    background: #0c0711;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #7100c9;
+    box-shadow: 0 0 30px rgba(126,0,255,.15);
+}
+
+label {
+    display: block;
+    margin: 18px 0 8px;
+    color: #c794ff;
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 15px;
+    background: #050008;
+    border: 1px solid #4d0080;
+    border-radius: 8px;
+    color: white;
+    outline: none;
+    font-size: 15px;
+}
+
+input:focus,
+select:focus {
+    border-color: #a900ff;
+    box-shadow: 0 0 10px #5800a0;
+}
+
+.horario {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(90deg, #26003f, #12001e);
+    border: 1px solid #9b00ff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.horario span {
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    color: #c06cff;
+}
+
+.horario small {
+    color: #aaa;
+}
+
+button {
+    width: 100%;
+    margin-top: 28px;
+    padding: 17px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #7000ff, #b000ff);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(145,0,255,.5);
+    transition: .3s;
+}
+
+button:hover {
+    transform: scale(1.02);
+}
+
+#mensagem {
+    margin-top: 20px;
+    text-align: center;
+    color: #c78aff;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 45px 20px;
+    background: #08000d;
+    border-top: 1px solid #7100c9;
+}
+
+footer h3 {
+    font-size: 28px;
+}
+
+footer p {
+    color: #a900ff;
+    margin: 10px;
+    font-weight: bold;
+}
+
+footer strong {
+    color: white;
+}
+
+@media (max-width: 700px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: 450px;
+    }
+
+    form {
+        padding: 22px;
+    }
+
+    .funcoes div {
+        width: 140px;
+    }
+}
