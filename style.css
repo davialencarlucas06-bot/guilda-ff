@@ -1,545 +1,893 @@
+/* =========================================
+   RESET
+========================================= */
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-:root {
-    --roxo: #9d00ff;
-    --roxo-escuro: #6100a8;
-    --fundo: #050008;
-    --card: #100817;
-    --texto: #ffffff;
-    --cinza: #aaaaaa;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--fundo);
-    color: var(--texto);
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(
+      circle at top,
+      #4c0874 0%,
+      #19051f 38%,
+      #070509 80%
+    );
+  color: #ffffff;
+  min-height: 100vh;
 }
+
+
+/* =========================================
+   GERAL
+========================================= */
 
 button,
 input,
 select {
-    font-family: inherit;
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.screen {
+  min-height: 100vh;
+  width: 100%;
 }
 
 
-/* ================= TELAS ================= */
+/* =========================================
+   HOME
+========================================= */
 
-.tela {
-    display: none;
-    min-height: 100vh;
-}
+.hero {
+  min-height: 100vh;
 
-.tela.ativa {
-    display: block;
-}
+  display: flex;
+  flex-direction: column;
 
+  justify-content: center;
+  align-items: center;
 
-/* ================= INÍCIO ================= */
+  text-align: center;
 
-#inicio {
-    background:
-        linear-gradient(
-            rgba(5, 0, 8, .55),
-            rgba(5, 0, 8, .96)
-        ),
-        url("recrutamento.png");
+  padding: 30px 20px;
 
-    background-size: cover;
-    background-position: center;
+  position: relative;
 
-    display: none;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-#inicio.ativa {
-    display: flex;
-}
-
-.inicio-conteudo {
-    padding: 30px;
-    max-width: 800px;
-}
-
-.logo {
-    font-size: 45px;
-    font-weight: 900;
-    letter-spacing: 4px;
-}
-
-.logo span {
-    color: var(--roxo);
-}
-
-.subtitulo {
-    color: #c995ff;
-    letter-spacing: 4px;
-    font-size: 12px;
-    margin-top: 12px;
-}
-
-h1 {
-    margin-top: 45px;
-    font-size: clamp(45px, 9vw, 85px);
-    text-shadow: 0 0 30px var(--roxo);
-}
-
-h1 span {
-    color: var(--roxo);
-}
-
-.descricao {
-    color: #cccccc;
-    font-size: 20px;
-    margin: 25px 0;
+  overflow: hidden;
 }
 
 
-/* ================= BOTÕES ================= */
+.hero::before {
+  content: "";
 
-.botao {
-    border: none;
-    padding: 17px 28px;
-    border-radius: 9px;
+  position: absolute;
 
-    background:
-        linear-gradient(
-            90deg,
-            var(--roxo-escuro),
-            var(--roxo)
-        );
+  width: 350px;
+  height: 350px;
 
-    color: white;
-    font-weight: 900;
-    cursor: pointer;
+  background: #9d2bdf;
 
-    box-shadow:
-        0 0 25px #8100ff66;
+  filter: blur(150px);
 
-    transition: .2s;
-}
+  opacity: .15;
 
-.botao:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 0 35px #a000ff99;
-}
+  top: -100px;
+  left: 50%;
 
-.largura {
-    width: 100%;
-    margin-top: 30px;
+  transform: translateX(-50%);
 }
 
 
-/* ================= PÁGINAS ================= */
+.logo-area {
+  position: relative;
 
-.pagina {
-    max-width: 1050px;
-    margin: auto;
-    padding: 35px 20px 70px;
-}
+  margin-bottom: 30px;
 
-.formulario-pagina {
-    max-width: 650px;
-}
-
-.voltar {
-    border: none;
-    background: transparent;
-    color: #c68aff;
-    cursor: pointer;
-    margin-bottom: 30px;
-    font-size: 15px;
-}
-
-h2 {
-    text-align: center;
-    color: #bf60ff;
-    text-shadow: 0 0 15px #7100c9;
-    margin: 20px 0 35px;
-    font-size: 34px;
+  animation: logoAnimation 1s ease;
 }
 
 
-/* ================= CARDS ================= */
+.logo-vnx {
+  font-size: 72px;
 
-.cards {
-    display: grid;
-    grid-template-columns:
-        repeat(3, 1fr);
+  font-weight: 1000;
 
-    gap: 20px;
-}
+  letter-spacing: 8px;
 
-.card {
-    background: var(--card);
-    border: 1px solid #7600c9;
-    border-radius: 15px;
-    padding: 30px 20px;
-    text-align: center;
-}
+  line-height: .9;
 
-.card:hover {
-    box-shadow:
-        0 0 25px #7200aa55;
-}
+  color: #ffffff;
 
-.icone {
-    color: var(--roxo);
-    font-size: 42px;
-    font-weight: bold;
-}
-
-.card h3 {
-    margin: 15px 0 8px;
-}
-
-.card p {
-    color: var(--cinza);
-    line-height: 1.5;
-}
-
-.titulo-vagas {
-    margin-top: 65px;
+  text-shadow:
+    0 0 10px #9c29dc,
+    0 0 30px #9c29dc;
 }
 
 
-/* ================= FUNÇÕES ================= */
+.logo-esportes {
+  font-size: 15px;
 
-.funcoes {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
+  letter-spacing: 8px;
 
-.funcao {
-    width: 180px;
-    padding: 23px;
-    text-align: center;
+  margin-top: 8px;
 
-    background: var(--card);
-    border: 1px solid #8200dc;
-    border-radius: 12px;
-
-    font-size: 32px;
-}
-
-.funcao span {
-    display: block;
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: bold;
+  color: #d7a5ee;
 }
 
 
-/* ================= FORMULÁRIO ================= */
+.status-badge {
+  display: inline-block;
 
-.texto-central {
-    text-align: center;
-    color: var(--cinza);
-    margin-bottom: 25px;
+  padding: 9px 16px;
+
+  border-radius: 30px;
+
+  background: rgba(69, 20, 88, .6);
+
+  border: 1px solid #9140b5;
+
+  color: #e6c3f0;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  margin-bottom: 20px;
 }
 
-form {
-    background: var(--card);
-    border: 1px solid #6500a8;
-    border-radius: 15px;
-    padding: 25px;
+
+.hero h1 {
+  font-size: clamp(30px, 8vw, 52px);
+
+  line-height: 1.05;
+
+  font-weight: 900;
+
+  margin-bottom: 18px;
 }
+
+
+.hero h1 span {
+  color: #bf4df2;
+
+  text-shadow:
+    0 0 15px rgba(191, 77, 242, .5);
+}
+
+
+.hero-description {
+  max-width: 520px;
+
+  color: #c9b8ce;
+
+  line-height: 1.6;
+
+  margin-bottom: 28px;
+}
+
+
+/* =========================================
+   BOTÕES
+========================================= */
+
+.main-button,
+.secondary-button {
+  width: min(390px, 100%);
+
+  padding: 16px 20px;
+
+  border-radius: 13px;
+
+  font-size: 15px;
+
+  font-weight: 900;
+
+  transition:
+    transform .2s,
+    filter .2s,
+    box-shadow .2s;
+}
+
+
+.main-button {
+  border: none;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7518ae,
+      #be40f1
+    );
+
+  box-shadow:
+    0 8px 25px
+    rgba(164, 43, 217, .3);
+}
+
+
+.main-button:hover {
+  transform: translateY(-3px);
+
+  filter: brightness(1.1);
+
+  box-shadow:
+    0 12px 30px
+    rgba(164, 43, 217, .45);
+}
+
+
+.secondary-button {
+  margin-top: 10px;
+
+  color: #ffffff;
+
+  background: #1b0d21;
+
+  border: 1px solid #683d75;
+}
+
+
+.secondary-button:hover {
+  transform: translateY(-2px);
+
+  background: #281332;
+}
+
+
+.full-button {
+  margin-top: 20px;
+}
+
+
+/* =========================================
+   CARDS
+========================================= */
+
+#requirementsScreen,
+#registrationScreen,
+#confirmationScreen {
+  padding: 25px 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+.content-card {
+  width: min(580px, 100%);
+
+  padding: 28px;
+
+  background:
+    rgba(13, 8, 17, .95);
+
+  border:
+    1px solid #4d285a;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.5);
+}
+
+
+.back-button {
+  padding: 9px 14px;
+
+  background: transparent;
+
+  border:
+    1px solid #53375e;
+
+  color: #cdbbd2;
+
+  border-radius: 9px;
+
+  box-shadow: none;
+}
+
+
+.section-title {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin: 22px 0;
+}
+
+
+.section-title span {
+  font-size: 25px;
+}
+
+
+.section-title h2 {
+  color: #d15aff;
+
+  font-size: 25px;
+}
+
+
+/* =========================================
+   REQUISITOS
+========================================= */
+
+.requirement-card {
+  display: flex;
+
+  gap: 15px;
+
+  align-items: center;
+
+  padding: 16px;
+
+  margin: 10px 0;
+
+  border-radius: 14px;
+
+  background: #170d1c;
+
+  border: 1px solid #34203c;
+}
+
+
+.requirement-icon {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border-radius: 12px;
+
+  background: #281332;
+
+  font-size: 22px;
+}
+
+
+.requirement-card h3 {
+  color: #e2a8fa;
+
+  margin-bottom: 5px;
+}
+
+
+.requirement-card p {
+  color: #bcaec1;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+}
+
+
+.sub-title {
+  color: #c986e4;
+
+  text-align: center;
+
+  font-size: 17px;
+
+  margin: 28px 0 14px;
+}
+
+
+.roles-container {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 10px;
+}
+
+
+.role-card {
+  padding: 18px 8px;
+
+  text-align: center;
+
+  border-radius: 13px;
+
+  background: #1a0d20;
+
+  border: 1px solid #41244b;
+}
+
+
+.role-card div {
+  font-size: 25px;
+
+  margin-bottom: 8px;
+}
+
+
+.role-card strong {
+  font-size: 12px;
+
+  color: #dcb7e7;
+}
+
+
+/* =========================================
+   HORÁRIOS
+========================================= */
+
+.schedule-card {
+  margin-top: 20px;
+
+  padding: 18px;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1b0c22,
+      #2a1035
+    );
+
+  border: 1px solid #4a2854;
+}
+
+
+.schedule-card h3 {
+  color: #d99aee;
+
+  font-size: 15px;
+
+  margin-bottom: 12px;
+}
+
+
+.day {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 11px 0;
+
+  border-bottom:
+    1px solid #3b2342;
+}
+
+
+.day:last-child {
+  border-bottom: none;
+}
+
+
+.day span {
+  color: #c4b3c8;
+
+  font-size: 13px;
+}
+
+
+.day strong {
+  color: #df72ff;
+}
+
+
+/* =========================================
+   FORMULÁRIO
+========================================= */
+
+.form-info {
+  color: #bba9c0;
+
+  line-height: 1.5;
+
+  margin-bottom: 22px;
+
+  text-align: center;
+}
+
 
 label {
-    display: block;
-    margin: 17px 0 7px;
-    color: #d19cff;
-    font-weight: bold;
+  display: block;
+
+  margin:
+    15px 0 7px;
+
+  color: #d8c0df;
+
+  font-size: 13px;
+
+  font-weight: bold;
 }
+
 
 input,
 select {
-    width: 100%;
-    padding: 14px;
+  width: 100%;
 
-    background: #050008;
-    color: white;
+  padding: 14px;
 
-    border: 1px solid #4d007a;
-    border-radius: 8px;
+  border-radius: 10px;
 
-    outline: none;
+  border: 1px solid #50355a;
+
+  background: #0e0911;
+
+  color: #ffffff;
+
+  outline: none;
 }
+
+
+input::placeholder {
+  color: #746878;
+}
+
 
 input:focus,
 select:focus {
-    border-color: var(--roxo);
-    box-shadow: 0 0 10px #7800aa;
-}
+  border-color: #ad39db;
 
-.horario {
-    margin-top: 20px;
-    padding: 17px;
-
-    text-align: center;
-
-    background: #210033;
-    border: 1px solid var(--roxo);
-
-    border-radius: 9px;
-}
-
-.horario strong {
-    display: block;
-    color: #d79aff;
-    font-size: 30px;
-}
-
-.horario small {
-    color: #999;
+  box-shadow:
+    0 0 0 2px
+    rgba(173, 57, 219, .1);
 }
 
 
-/* ================= BARRA ================= */
+select option {
+  background: #150c19;
 
-.barra {
-    height: 70px;
-    padding: 12px 20px;
+  color: white;
+}
 
+
+.form-error {
+  color: #ff9a9a;
+
+  font-size: 13px;
+
+  text-align: center;
+
+  margin-top: 15px;
+
+  min-height: 18px;
+}
+
+
+/* =========================================
+   CONFIRMAÇÃO
+========================================= */
+
+.confirmation-card {
+  text-align: center;
+}
+
+
+.success-icon {
+  width: 75px;
+  height: 75px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 20px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c20ac,
+      #c145ed
+    );
+
+  font-size: 38px;
+
+  font-weight: bold;
+
+  box-shadow:
+    0 0 30px
+    rgba(193, 69, 237, .35);
+}
+
+
+.confirmation-card h1 {
+  font-size: 28px;
+
+  margin: 15px 0;
+
+  color: #ffffff;
+}
+
+
+.confirmation-card > p {
+  color: #bcaac1;
+
+  margin-bottom: 20px;
+}
+
+
+.summary-card {
+  text-align: left;
+
+  padding: 18px;
+
+  border-radius: 15px;
+
+  background: #170c1c;
+
+  border: 1px solid #42234d;
+
+  margin-bottom: 15px;
+}
+
+
+.summary-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 9px 0;
+
+  border-bottom:
+    1px solid #302033;
+}
+
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+
+
+.summary-row span {
+  color: #9f8da5;
+
+  font-size: 13px;
+}
+
+
+.summary-row strong {
+  color: #e2b4ef;
+
+  text-align: right;
+}
+
+
+.important-message {
+  text-align: left;
+
+  padding: 16px;
+
+  border-radius: 14px;
+
+  background: #28152e;
+
+  border: 1px solid #704078;
+
+  margin: 15px 0 20px;
+}
+
+
+.important-message strong {
+  color: #e17aff;
+}
+
+
+.important-message p {
+  color: #c7b5cc;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  margin-top: 6px;
+}
+
+
+/* =========================================
+   WHATSAPP
+========================================= */
+
+.whatsapp-button {
+  display: block;
+
+  width: 100%;
+
+  padding: 16px;
+
+  border-radius: 13px;
+
+  text-decoration: none;
+
+  color: #ffffff;
+
+  font-weight: 900;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7518ae,
+      #b83fe9
+    );
+
+  box-shadow:
+    0 8px 25px
+    rgba(170, 43, 220, .3);
+
+  transition: .2s;
+}
+
+
+.whatsapp-button:hover {
+  transform: translateY(-3px);
+
+  filter: brightness(1.1);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  text-align: center;
+
+  padding: 25px 15px;
+
+  color: #746879;
+
+  background: #09060b;
+
+  border-top: 1px solid #25172a;
+}
+
+
+.footer-logo {
+  color: #b348db;
+
+  font-weight: 900;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 5px;
+}
+
+
+footer p {
+  font-size: 12px;
+
+  margin-bottom: 8px;
+}
+
+
+footer span {
+  font-size: 10px;
+}
+
+
+/* =========================================
+   ANIMAÇÕES
+========================================= */
+
+@keyframes logoAnimation {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-20px)
+      scale(.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 600px) {
+
+  .hero {
+    padding: 25px 18px;
+  }
+
+  .logo-vnx {
+    font-size: 58px;
+  }
+
+  .logo-esportes {
+    font-size: 12px;
+
+    letter-spacing: 6px;
+  }
+
+  .content-card {
+    padding: 22px 18px;
+
+    border-radius: 18px;
+  }
+
+  .roles-container {
+    grid-template-columns: 1fr;
+  }
+
+  .role-card {
     display: flex;
-    justify-content: space-between;
+
     align-items: center;
 
-    background: #0b0410;
-    border-bottom: 1px solid #6500a8;
-}
+    justify-content: center;
 
-.barra strong {
-    display: block;
-}
+    gap: 10px;
 
-.barra small {
-    display: block;
-    color: #999;
-    margin-top: 4px;
-}
+    padding: 13px;
+  }
 
-.barra button {
-    background: #1c0b25;
-    color: white;
-    border: 1px solid #6900a9;
-    border-radius: 7px;
-    padding: 8px 14px;
-}
+  .role-card div {
+    margin: 0;
+  }
 
-
-/* ================= ÁREA ================= */
-
-.area {
-    max-width: 950px;
-    margin: auto;
-    padding: 25px 18px;
-}
-
-.status {
-    background: var(--card);
-    border: 1px solid #6900a9;
-    border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 18px;
-}
-
-.status p {
-    color: #aaa;
-    margin-top: 8px;
-}
-
-.bolinha {
-    display: inline-block;
-
-    width: 9px;
-    height: 9px;
-
-    border-radius: 50%;
-
-    background: var(--roxo);
-
-    box-shadow:
-        0 0 10px var(--roxo);
-}
-
-
-/* ================= CHAT ================= */
-
-.chat {
-    background: var(--card);
-    border: 1px solid #62009d;
-    border-radius: 14px;
-    overflow: hidden;
-}
-
-.chat-topo {
-    padding: 16px;
-    background: #15091c;
-    border-bottom: 1px solid #4d0079;
-}
-
-.chat-topo span {
-    float: right;
-    color: var(--roxo);
-    font-size: 12px;
-}
-
-.mensagens {
-    height: 430px;
-    overflow-y: auto;
-    padding: 18px;
-}
-
-.mensagem {
-    max-width: 78%;
-    padding: 11px 13px;
-    border-radius: 12px;
-    margin-bottom: 10px;
-    line-height: 1.4;
-}
-
-.bot-msg {
-    background: #251030;
-    border: 1px solid #57007f;
-}
-
-.usuario-msg {
-    background: #6d00d9;
-    margin-left: auto;
-}
-
-.adm-msg {
-    background: #3b1150;
-}
-
-.mensagem small {
-    display: block;
-    color: #aaa;
-    font-size: 10px;
-    margin-top: 5px;
-}
-
-.chat-form {
-    display: flex;
-    gap: 8px;
-
-    padding: 10px;
-
-    border: none;
-    border-top: 1px solid #4d0079;
-
-    border-radius: 0;
-}
-
-.chat-form input {
-    flex: 1;
-}
-
-.chat-form button {
-    width: 50px;
-    border: none;
-    border-radius: 8px;
-
-    background: var(--roxo);
-    color: white;
-
-    cursor: pointer;
-}
-
-
-/* ================= ADM ================= */
-
-.painel {
-    max-width: 1100px;
-    margin: auto;
-    padding: 25px 18px;
-
-    display: grid;
-    grid-template-columns: 350px 1fr;
-
-    gap: 18px;
-}
-
-.lista {
-    background: var(--card);
-    border: 1px solid #62009d;
-    border-radius: 14px;
-    padding: 15px;
-}
-
-.lista h2 {
+  .confirmation-card h1 {
     font-size: 24px;
-}
+  }
 
-.candidato {
-    padding: 14px;
-    margin-bottom: 9px;
-
-    border: 1px solid #3d1752;
-    border-radius: 10px;
-
-    cursor: pointer;
-}
-
-.candidato:hover {
-    border-color: var(--roxo);
-}
-
-.candidato small {
-    color: #999;
-    line-height: 1.6;
-}
-
-.candidato.selecionado {
-    background: #24102f;
-    border-color: var(--roxo);
-}
-
-.escondido {
-    display: none;
 }
 
 
-/* ================= CELULAR ================= */
+/* =========================================
+   TELAS GRANDES
+========================================= */
 
-@media (max-width: 750px) {
+@media (min-width: 900px) {
 
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
-    .painel {
-        grid-template-columns: 1fr;
-    }
-
-    .lista {
-        max-height: 300px;
-        overflow-y: auto;
-    }
-
-    .mensagens {
-        height: 360px;
-    }
-
-    .logo {
-        font-size: 34px;
-    }
-
-    .subtitulo {
-        letter-spacing: 2px;
-    }
-
-    .funcao {
-        width: 140px;
-    }
+  .hero {
+    background:
+      radial-gradient(
+        circle at center,
+        rgba(130, 30, 170, .12),
+        transparent 45%
+      );
+  }
 
 }
