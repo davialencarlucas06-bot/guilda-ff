@@ -1,415 +1,404 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VNX Esportes | Recrutamento</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#8b21d1">
+  <meta name="description" content="Recrutamento oficial VNX Esportes">
+
+  <title>VNX Esportes | Recrutamento</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ================= TELA INICIAL ================= -->
+  <!-- =========================
+       TELA INICIAL
+  ========================== -->
 
-<section id="inicio" class="tela ativa">
+  <section id="homeScreen" class="screen">
 
-    <div class="inicio-conteudo">
+    <div class="hero">
 
-        <div class="logo">
-            VNX <span>ESPORTES</span>
-        </div>
+      <div class="logo-area">
+        <div class="logo-vnx">VNX</div>
+        <div class="logo-esportes">ESPORTES</div>
+      </div>
 
-        <p class="subtitulo">
-            MAIS QUE UMA GUILDA, UMA FAMÍLIA.
-        </p>
+      <div class="status-badge">
+        🟢 RECRUTAMENTO ON
+      </div>
 
-        <h1>
-            RECRUTAMENTO <span>ON</span>
-        </h1>
+      <h1>
+        FAÇA PARTE DA<br>
+        <span>VNX ESPORTES</span>
+      </h1>
 
-        <p class="descricao">
-            Quer fazer parte da VNX Esportes?
-        </p>
+      <p class="hero-description">
+        Mostre seu potencial, encontre sua função
+        e venha fazer parte da nossa equipe.
+      </p>
 
-        <button class="botao" onclick="abrirTela('requisitos')">
-            ENTRAR NO RECRUTAMENTO
-        </button>
+      <button
+        class="main-button"
+        onclick="showScreen('requirementsScreen')"
+      >
+        📋 VER REQUISITOS
+      </button>
+
+      <button
+        class="secondary-button"
+        onclick="showScreen('registrationScreen')"
+      >
+        🚀 QUERO PARTICIPAR
+      </button>
 
     </div>
 
-</section>
+  </section>
 
 
-<!-- ================= REQUISITOS ================= -->
+  <!-- =========================
+       REQUISITOS
+  ========================== -->
 
-<section id="requisitos" class="tela">
+  <section id="requirementsScreen" class="screen hidden">
 
-    <div class="pagina">
+    <div class="content-card">
 
-        <button class="voltar" onclick="abrirTela('inicio')">
-            ← Voltar
-        </button>
+      <button
+        class="back-button"
+        onclick="showScreen('homeScreen')"
+      >
+        ← Voltar
+      </button>
 
+      <div class="section-title">
+        <span>📋</span>
         <h2>REQUISITOS</h2>
+      </div>
 
-        <div class="cards">
+      <div class="requirement-card">
 
-            <div class="card">
-                <div class="icone">15+</div>
-                <h3>MÍNIMO 15 ANOS</h3>
-                <p>
-                    Tenha 15 anos ou mais para participar.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="icone">🎮</div>
-                <h3>JOGAR SEMPRE</h3>
-                <p>
-                    Após ser recrutado, tenha compromisso com a guilda.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="icone">●</div>
-                <h3>ONLINE TODOS OS DIAS</h3>
-                <p>
-                    Participe e esteja ativo com frequência.
-                </p>
-            </div>
-
+        <div class="requirement-icon">
+          🔞
         </div>
 
-
-        <h2 class="titulo-vagas">
-            VAGAS ABERTAS
-        </h2>
-
-        <div class="funcoes">
-
-            <div class="funcao">
-                💣
-                <span>GRANADEIRO</span>
-            </div>
-
-            <div class="funcao">
-                🛡️
-                <span>SUPORTE</span>
-            </div>
-
-            <div class="funcao">
-                🏃
-                <span>RUSHADOR</span>
-            </div>
-
+        <div>
+          <h3>Idade mínima</h3>
+          <p>15 anos</p>
         </div>
 
+      </div>
 
-        <button
-            class="botao largura"
-            onclick="abrirTela('agendamento')"
-        >
-            AGENDAR RECRUTAMENTO
-        </button>
+
+      <div class="requirement-card">
+
+        <div class="requirement-icon">
+          🎮
+        </div>
+
+        <div>
+          <h3>Atividade</h3>
+          <p>
+            Jogar com frequência após entrar
+            na guilda.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="requirement-card">
+
+        <div class="requirement-icon">
+          🟢
+        </div>
+
+        <div>
+          <h3>Presença</h3>
+          <p>
+            Estar online todos os dias
+            sempre que possível.
+          </p>
+        </div>
+
+      </div>
+
+
+      <h2 class="sub-title">
+        FUNÇÕES DISPONÍVEIS
+      </h2>
+
+
+      <div class="roles-container">
+
+        <div class="role-card">
+          <div>💣</div>
+          <strong>GRANADEIRO</strong>
+        </div>
+
+        <div class="role-card">
+          <div>🛡️</div>
+          <strong>SUPORTE</strong>
+        </div>
+
+        <div class="role-card">
+          <div>⚡</div>
+          <strong>RUSHADOR</strong>
+        </div>
+
+      </div>
+
+
+      <div class="schedule-card">
+
+        <h3>📅 HORÁRIOS DE RECRUTAMENTO</h3>
+
+        <div class="day">
+          <span>SEGUNDA-FEIRA</span>
+          <strong>19:00</strong>
+        </div>
+
+        <div class="day">
+          <span>QUARTA-FEIRA</span>
+          <strong>19:00</strong>
+        </div>
+
+        <div class="day">
+          <span>SEXTA-FEIRA</span>
+          <strong>19:00</strong>
+        </div>
+
+      </div>
+
+
+      <button
+        class="main-button full-button"
+        onclick="showScreen('registrationScreen')"
+      >
+        🚀 AGENDAR RECRUTAMENTO
+      </button>
 
     </div>
 
-</section>
+  </section>
 
 
-<!-- ================= AGENDAMENTO ================= -->
+  <!-- =========================
+       INSCRIÇÃO
+  ========================== -->
 
-<section id="agendamento" class="tela">
+  <section id="registrationScreen" class="screen hidden">
 
-    <div class="pagina formulario-pagina">
+    <div class="content-card">
 
-        <button
-            class="voltar"
-            onclick="abrirTela('requisitos')"
-        >
-            ← Voltar
-        </button>
+      <button
+        class="back-button"
+        onclick="showScreen('requirementsScreen')"
+      >
+        ← Voltar
+      </button>
 
-        <h2>
-            AGENDAR RECRUTAMENTO
-        </h2>
+      <div class="section-title">
+        <span>📝</span>
+        <h2>AGENDAR RECRUTAMENTO</h2>
+      </div>
 
-        <p class="texto-central">
-            Escolha um dos dias disponíveis.
-            O recrutamento acontece às <strong>19:00</strong>.
+      <p class="form-info">
+        Preencha seus dados antes de entrar
+        no grupo de recrutamento.
+      </p>
+
+
+      <label for="playerId">
+        ID DO FREE FIRE
+      </label>
+
+      <input
+        id="playerId"
+        type="text"
+        inputmode="numeric"
+        placeholder="Digite seu ID"
+        maxlength="20"
+      >
+
+
+      <label for="playerAge">
+        IDADE
+      </label>
+
+      <input
+        id="playerAge"
+        type="number"
+        min="15"
+        max="99"
+        placeholder="Digite sua idade"
+      >
+
+
+      <label for="playerRole">
+        SUA FUNÇÃO
+      </label>
+
+      <select id="playerRole">
+
+        <option value="">
+          Selecione sua função
+        </option>
+
+        <option value="Granadeiro">
+          💣 Granadeiro
+        </option>
+
+        <option value="Suporte">
+          🛡️ Suporte
+        </option>
+
+        <option value="Rushador">
+          ⚡ Rushador
+        </option>
+
+      </select>
+
+
+      <label for="recruitmentDay">
+        DIA DO RECRUTAMENTO
+      </label>
+
+      <select id="recruitmentDay">
+
+        <option value="">
+          Selecione o dia
+        </option>
+
+        <option value="Segunda-feira">
+          Segunda-feira — 19:00
+        </option>
+
+        <option value="Quarta-feira">
+          Quarta-feira — 19:00
+        </option>
+
+        <option value="Sexta-feira">
+          Sexta-feira — 19:00
+        </option>
+
+      </select>
+
+
+      <div
+        id="formError"
+        class="form-error"
+      ></div>
+
+
+      <button
+        class="main-button full-button"
+        onclick="submitRegistration()"
+      >
+        ✅ CONFIRMAR INSCRIÇÃO
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONFIRMAÇÃO
+  ========================== -->
+
+  <section id="confirmationScreen" class="screen hidden">
+
+    <div class="content-card confirmation-card">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <div class="status-badge">
+        🟢 VAGA AGENDADA
+      </div>
+
+      <h1>
+        INSCRIÇÃO CONFIRMADA!
+      </h1>
+
+      <p>
+        Seus dados foram registrados
+        neste dispositivo.
+      </p>
+
+
+      <div
+        id="registrationSummary"
+        class="summary-card"
+      >
+      </div>
+
+
+      <div class="important-message">
+
+        <strong>
+          ⚠️ ATENÇÃO
+        </strong>
+
+        <p>
+          Entre no grupo de recrutamento
+          e fique preparado para o horário
+          escolhido.
         </p>
 
-
-        <form id="formulario">
-
-            <label>
-                Seu nome
-            </label>
-
-            <input
-                type="text"
-                id="nome"
-                placeholder="Digite seu nome"
-                required
-            >
+      </div>
 
 
-            <label>
-                ID do Free Fire
-            </label>
-
-            <input
-                type="text"
-                id="idFreeFire"
-                placeholder="Digite seu ID"
-                inputmode="numeric"
-                required
-            >
+      <a
+        href="https://chat.whatsapp.com/KqXvIWJYEN1LA9CCGao8bN?s=cl&p=i&mlu=4"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="whatsapp-button"
+      >
+        💬 ENTRAR NO GRUPO
+      </a>
 
 
-            <label>
-                Idade
-            </label>
-
-            <input
-                type="number"
-                id="idade"
-                placeholder="15 ou mais"
-                min="15"
-                required
-            >
-
-
-            <label>
-                Função
-            </label>
-
-            <select id="funcaoEscolhida" required>
-
-                <option value="">
-                    Escolha sua função
-                </option>
-
-                <option value="Granadeiro">
-                    💣 Granadeiro
-                </option>
-
-                <option value="Suporte">
-                    🛡️ Suporte
-                </option>
-
-                <option value="Rushador">
-                    🏃 Rushador
-                </option>
-
-            </select>
-
-
-            <label>
-                Dia do recrutamento
-            </label>
-
-            <select id="dia" required>
-
-                <option value="">
-                    Escolha o dia
-                </option>
-
-            </select>
-
-
-            <div class="horario">
-
-                <strong>19:00</strong>
-
-                <small>
-                    Horário fixo
-                </small>
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="botao largura"
-            >
-                CONFIRMAR AGENDAMENTO
-            </button>
-
-        </form>
+      <button
+        class="secondary-button full-button"
+        onclick="showScreen('homeScreen')"
+      >
+        VOLTAR AO INÍCIO
+      </button>
 
     </div>
 
-</section>
+  </section>
 
 
-<!-- ================= ÁREA DO CANDIDATO ================= -->
+  <!-- =========================
+       RODAPÉ
+  ========================== -->
 
-<section id="areaCandidato" class="tela">
+  <footer>
 
-    <div class="barra">
-
-        <div>
-            <strong>VNX ESPORTES</strong>
-
-            <small>
-                Área do recrutamento
-            </small>
-        </div>
-
-        <button onclick="sairDaArea()">
-            Sair
-        </button>
-
+    <div class="footer-logo">
+      VNX ESPORTES
     </div>
 
+    <p>
+      Recrutamento oficial
+    </p>
 
-    <div class="area">
+    <span>
+      © 2026 VNX Esportes
+    </span>
 
-        <div class="status">
-
-            <span class="bolinha"></span>
-
-            <strong>
-                RECRUTAMENTO AGENDADO
-            </strong>
-
-            <p id="informacoesAgendamento">
-            </p>
-
-        </div>
+  </footer>
 
 
-        <div class="chat">
-
-            <div class="chat-topo">
-
-                <strong>
-                    Atendimento VNX
-                </strong>
-
-                <span>
-                    BOT • ONLINE
-                </span>
-
-            </div>
-
-
-            <div
-                id="mensagens"
-                class="mensagens"
-            ></div>
-
-
-            <form
-                id="formChat"
-                class="chat-form"
-            >
-
-                <input
-                    type="text"
-                    id="mensagem"
-                    placeholder="Digite sua mensagem..."
-                    required
-                >
-
-                <button>
-                    ➤
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= PAINEL ADM ================= -->
-
-<section id="painelAdm" class="tela">
-
-    <div class="barra">
-
-        <div>
-            <strong>
-                VNX ESPORTES — ADM
-            </strong>
-
-            <small>
-                Painel de recrutamentos
-            </small>
-        </div>
-
-        <button onclick="sairDaArea()">
-            Sair
-        </button>
-
-    </div>
-
-
-    <div class="painel">
-
-        <div class="lista">
-
-            <h2>
-                RECRUTAMENTOS
-            </h2>
-
-            <div id="listaCandidatos">
-            </div>
-
-        </div>
-
-
-        <div class="chat">
-
-            <div class="chat-topo">
-
-                <strong id="nomeChatAdm">
-                    Selecione um candidato
-                </strong>
-
-                <span>
-                    ADM
-                </span>
-
-            </div>
-
-
-            <div
-                id="mensagensAdm"
-                class="mensagens"
-            ></div>
-
-
-            <form
-                id="formChatAdm"
-                class="chat-form escondido"
-            >
-
-                <input
-                    type="text"
-                    id="mensagemAdm"
-                    placeholder="Responder candidato..."
-                    required
-                >
-
-                <button>
-                    ➤
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
